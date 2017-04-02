@@ -151,7 +151,7 @@ This method takes a socket object as a parameter and returns the corresponding u
 
 It is the shorthand way of calling `session.connections.get()`.
 
-Add any additional properties you wish to set to the object returned by this method.
+Add any additional properties you wish to set on the user to the object returned by this method.
 
 - This method takes 1 parameter.
 
@@ -186,7 +186,7 @@ io.on('connection', (socket) => {
 
   const user = session.get(socket);
 
-  // Get object of all joined rooms:
+  // Get an object of all joined rooms:
   user.rooms();
 
   // Get an array of all joined rooms:
@@ -207,7 +207,7 @@ io.on('connection', (socket) => {
 
 ***
 ## session.addPlugin([*name*], [*plugin*]):
-This method takes a plugin name and object as parameters and stores it on the `session` object.
+This method takes a name and either an object or function as parameters and stores it on the `session` object.
 
 It's a convenience method that let's you write and store custom session/user related plugins on the library.  
 
@@ -235,7 +235,7 @@ session.addPlugin('getAndSetLocation', (userObj) => {
 **Full example**:
 ```js
 const io = require('socket.io');
-const session = require('session-socket').mount(io);
+const session = require('session-socket');
 
 io.on('connection', (socket) => {
   session.connect(socket);
@@ -248,6 +248,7 @@ io.on('connection', (socket) => {
   });
 
   session.getAndSetLocation(session.get(socket));
+
   console.log(session.get(socket)) // { location: 'Vancouver' }
 
   socket.on('disconnect', () => {
