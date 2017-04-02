@@ -105,8 +105,8 @@ io.on('connection', (socket) => {
   session.connect(socket);
 
   socket.on('disconnect', () => {
-	  console.log(`User disconnected: ${socket.id}`);
-	});
+    console.log(`User disconnected: ${socket.id}`);
+  });
 });
 ```
 
@@ -140,8 +140,8 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     session.disconnect(socket);
-	  console.log(`User disconnected: ${socket.id}`);
-	});
+    console.log(`User disconnected: ${socket.id}`);
+  });
 });
 ```
 
@@ -200,8 +200,8 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     session.disconnect(socket);
-	  console.log(`User disconnected: ${socket.id}`);
-	});
+    console.log(`User disconnected: ${socket.id}`);
+  });
 });
 ```
 
@@ -235,7 +235,7 @@ session.addPlugin('getAndSetLocation', (userObj) => {
 **Full example**:
 ```js
 const io = require('socket.io');
-const session = require('session-socket').mount(io);
+const session = require('session-socket');
 
 io.on('connection', (socket) => {
   session.connect(socket);
@@ -252,8 +252,8 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     session.disconnect(socket);
-	  console.log(`User disconnected: ${socket.id}`);
-	});
+    console.log(`User disconnected: ${socket.id}`);
+  });
 });
 ```
 
