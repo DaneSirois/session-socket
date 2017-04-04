@@ -1,5 +1,5 @@
 # Session-Socket
--The Socket.io session/user management library:
+> The Socket.io session/user management library:
 
 **Why session-socket?**
 
