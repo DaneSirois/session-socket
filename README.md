@@ -3,7 +3,7 @@
 
 **Why session-socket?**
 
-- It's simple. Through an expressive API, session-socket makes it easy to manage and keep track of active websocket connections.
+- It's intuitive. Through it's expressive API, session-socket makes it easy to manage and keep track of active websocket connections.
 - It's extensible. Write custom user/session related plugins for the library.
 - It's lightweight. After removing whitespace, this library sits in at just 50 lines of code.
 
@@ -29,12 +29,12 @@ This expression returns an object which contains a variety of different methods 
 **Returns**: [*obj*]
 ```js
 {
-  all(),
-  get(),
-  toArray(),
-  length(),
-  connect(),
-  disconnect()
+  .all(),
+  .length(),
+  .get(),
+  .toArray(),
+  .connect(),
+  .disconnect()
 }
 ```
 
@@ -164,10 +164,11 @@ Add any additional properties you wish to set on the user to the object returned
 ```js
 // Default properties:
 {
-  rooms(),
-  roomList(),
-  joinRoom(),
-  leaveRoom()
+  .assign(),
+  .rooms(),
+  .roomList(),
+  .joinRoom(),
+  .leaveRoom()
 }
 ```
 
@@ -184,18 +185,18 @@ const session = require('session-socket');
 io.on('connection', (socket) => {
   session.connect(socket);
 
-  const user = session.get(socket);
+  // Get user and assign some initial props:
+  const user = session.get(socket).assign({ city: 'Vancouver' });
 
-  // Get an object of all joined rooms:
+  // Assign some new properties on user:
+  user.assign({ id: 1, name: 'Don' });
+
+  // Get an object or array of all joined rooms:
   user.rooms();
-
-  // Get an array of all joined rooms:
   user.roomList();
 
-  // Join a new room:
+  // Join and leave a room:
   user.joinRoom('chatroom1');
-
-  // Leave a room:
   user.leaveRoom('chatroom1');
 
   socket.on('disconnect', () => {
@@ -209,7 +210,7 @@ io.on('connection', (socket) => {
 ## session.addPlugin([*name*], [*plugin*]):
 This method takes a name and either an object or function as parameters and stores it on the `session` object.
 
-It's a convenience method that let's you write and store custom session/user related plugins on the library.  
+It's a convenience method that let's you write and store custom session/user related plugins for the library.  
 
 - This method takes 2 parameters.
 
