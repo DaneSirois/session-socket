@@ -4,10 +4,12 @@ const User = (() => {
 	this.create = (socket, obj) => {
 		const assign = (props) => Object.assign(_user, props);
 		const addProp = (key, prop) => _user[String(key)] = prop;
+		const removeProp = (key) => delete _user[String(key)];
 		const _user = Object.assign(
 			{
 				assign,
 				addProp,
+				removeProp,
 				rooms: () => socket.adapter.rooms,
 				roomList: () => Object.keys(socket.adapter.rooms),
         joinRoom: (room) => socket.join(room),

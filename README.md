@@ -162,10 +162,10 @@ Add any additional properties you wish to set on the user to the object returned
 
 **Returns**: [*obj*]
 ```js
-// Default properties:
 {
   .assign(),
   .addProp(),
+  .removeProp(),
   .rooms(),
   .roomList(),
   .joinRoom(),
@@ -196,6 +196,7 @@ io.on('connection', (socket) => {
     tool: 'hammer',
     drink: 'coffee'
   });
+  user.removeProp('items');
 
   // Get an object or array of all joined rooms:
   user.rooms();
