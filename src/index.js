@@ -2,8 +2,10 @@
 // User API:
 const User = (() => {
 	this.create = (socket, obj) => {
-		return Object.assign(
+		const assign = (props) => Object.assign(_user, props);
+		const _user = Object.assign(
 			{
+				assign,
 				rooms: () => socket.adapter.rooms,
 				roomList: () => Object.keys(socket.adapter.rooms),
         joinRoom: (room) => socket.join(room),
@@ -11,6 +13,7 @@ const User = (() => {
       },
       obj
     );
+		return _user;
 	};
 	return {
 		create: (socket, obj) => this.create(socket, obj)

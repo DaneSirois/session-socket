@@ -209,7 +209,7 @@ io.on('connection', (socket) => {
 ## session.addPlugin([*name*], [*plugin*]):
 This method takes a name and either an object or function as parameters and stores it on the `session` object.
 
-It's a convenience method that let's you write and store custom session/user related plugins on the library.  
+It's a convenience method that let's you write and store custom session/user related plugins for the library.  
 
 - This method takes 2 parameters.
 
