@@ -165,6 +165,7 @@ Add any additional properties you wish to set on the user to the object returned
 // Default properties:
 {
   .assign(),
+  .addProp(),
   .rooms(),
   .roomList(),
   .joinRoom(),
@@ -188,8 +189,13 @@ io.on('connection', (socket) => {
   // Get user and assign some initial props:
   const user = session.get(socket).assign({ city: 'Vancouver' });
 
-  // Assign some new properties on user:
+  // Modifying the user object:
   user.assign({ id: 1, name: 'Don' });
+  user.addProp('items', {
+    bike: 'red',
+    tool: 'hammer',
+    drink: 'coffee'
+  });
 
   // Get an object or array of all joined rooms:
   user.rooms();

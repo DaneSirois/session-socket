@@ -3,9 +3,11 @@
 const User = (() => {
 	this.create = (socket, obj) => {
 		const assign = (props) => Object.assign(_user, props);
+		const addProp = (key, prop) => _user[String(key)] = prop;
 		const _user = Object.assign(
 			{
 				assign,
+				addProp,
 				rooms: () => socket.adapter.rooms,
 				roomList: () => Object.keys(socket.adapter.rooms),
         joinRoom: (room) => socket.join(room),
