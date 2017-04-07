@@ -20,7 +20,7 @@ const User = (() => {
 		return _user;
 	};
 	return {
-		create: (socket, obj) => this.create(socket, obj)
+		create: (socket, obj = {}) => this.create(socket, obj)
 	};
 })();
 

@@ -23,59 +23,10 @@ npm install session-socket --save
 ***
 ## API:
 
-## session.connections:
-This expression returns an object which contains a variety of different methods for acting on each of your apps active websocket connections.
-
-**Returns**: [*obj*]
-```js
-{
-  .all(),
-  .length(),
-  .get(),
-  .toArray(),
-  .connect(),
-  .disconnect()
-}
-```
-
-**Example**:
-```js
-session.connections;
-```
-
-**Full example**:
-```js
-const io = require('socket.io');
-const session = require('session-socket');
-
-io.on('connection', (socket) => {
-
-  // Get all active connections:
-  const allConnections = session.connections.all();
-
-  // Get an individual user:
-  const userObj = session.connections.get(socket);
-
-  // Get an array of each active connection:
-  const arr = session.connections.toArray();
-
-  // Get number of active connections:
-  const countConnections = session.connections.length();
-
-  // Connect a new socket:
-  session.connections.connect(socket);
-
-  // Disconnect a socket:
-  session.connections.disconnect(socket);
-
-});
-```
-
-***
 ## session.connect([*socket*], [*user*]):
-This method connects a socket instance to the library. In most scenarios, you will want to invoke this method immediately after establishing your websocket connection.
+This method connects a socket instance to the library. In most scenarios, you will want to immediately invoke this method after establishing your websocket connection.
 
-It is the shorthand way of calling `session.connections.connect()`.
+It is the shorthand version of calling `session.connections.connect()`.
 
 - This method takes 2 parameters, the second being optional.
 
@@ -114,7 +65,7 @@ io.on('connection', (socket) => {
 ## session.disconnect([*socket*]):
 This method disconnects a socket instance from the library. Call it from within your disconnect handler.
 
-It is the shorthand way of calling `session.connections.disconnect()`.
+It is the shorthand version of calling `session.connections.disconnect()`.
 
 - This method takes 1 parameter.
 
@@ -149,7 +100,7 @@ io.on('connection', (socket) => {
 ## session.get([*socket*]):
 This method takes a socket object as a parameter and returns the corresponding user.
 
-It is the shorthand way of calling `session.connections.get()`.
+It is the shorthand version of calling `session.connections.get()`.
 
 Add any additional properties you wish to set on the user to the object returned by this method.
 
@@ -210,6 +161,53 @@ io.on('connection', (socket) => {
     session.disconnect(socket);
     console.log(`User disconnected: ${socket.id}`);
   });
+});
+```
+
+***
+## session.connections:
+This expression returns an object which contains some different methods for acting on each of your apps active websocket connections.
+
+**Returns**: [*obj*]
+```js
+{
+  .all(),
+  .length(),
+  .get(),
+  .toArray(),
+  .connect(),
+  .disconnect()
+}
+```
+
+**Example**:
+```js
+session.connections;
+```
+
+**Full example**:
+```js
+const io = require('socket.io');
+const session = require('session-socket');
+
+io.on('connection', (socket) => {
+  // Connect a new socket:
+  session.connections.connect(socket);
+
+  // Get all active connections:
+  const allConnections = session.connections.all();
+
+  // Get an individual user:
+  const userObj = session.connections.get(socket);
+
+  // Get an array of each active connection:
+  const arr = session.connections.toArray();
+
+  // Get number of active connections:
+  const countConnections = session.connections.length();
+
+  // Disconnect a socket:
+  session.connections.disconnect(socket);
 });
 ```
 
